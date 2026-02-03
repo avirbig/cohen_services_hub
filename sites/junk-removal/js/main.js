@@ -240,8 +240,6 @@ const ContactForm = {
 const FileUpload = {
     input: null,
     preview: null,
-    files: [],
-    maxFiles: 5,
     maxSizeMB: 5,
 
     init() {
@@ -254,7 +252,7 @@ const FileUpload = {
     },
 
     bindEvents() {
-        this.input.addEventListener('change', (e) => this.handleFiles(e.target.files));
+        this.input.addEventListener('change', (e) => this.handleFile(e.target.files[0]));
 
         // Drag and drop
         const label = this.input.closest('.file-upload').querySelector('.file-upload__label');
@@ -271,83 +269,60 @@ const FileUpload = {
             label.addEventListener('drop', (e) => {
                 e.preventDefault();
                 label.classList.remove('dragover');
-                this.handleFiles(e.dataTransfer.files);
+                if (e.dataTransfer.files[0]) {
+                    this.handleFile(e.dataTransfer.files[0]);
+                    // Update the input element
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(e.dataTransfer.files[0]);
+                    this.input.files = dataTransfer.files;
+                }
             });
         }
     },
 
-    handleFiles(fileList) {
-        const files = Array.from(fileList);
+    handleFile(file) {
+        if (!file) {
+            this.clearPreviews();
+            return;
+        }
         
-        files.forEach(file => {
-            // Check max files
-            if (this.files.length >= this.maxFiles) {
-                alert(`ניתן להעלות עד ${this.maxFiles} קבצים`);
-                return;
-            }
+        // Validate file type
+        if (!FileUtils.validateFileType(file)) {
+            alert(`סוג קובץ לא נתמך: ${file.name}`);
+            this.input.value = '';
+            return;
+        }
 
-            // Validate file type
-            if (!FileUtils.validateFileType(file)) {
-                alert(`סוג קובץ לא נתמך: ${file.name}`);
-                return;
-            }
+        // Validate file size
+        if (!FileUtils.validateFileSize(file, this.maxSizeMB)) {
+            alert(`הקובץ ${file.name} גדול מדי. גודל מקסימלי: ${this.maxSizeMB}MB`);
+            this.input.value = '';
+            return;
+        }
 
-            // Validate file size
-            if (!FileUtils.validateFileSize(file, this.maxSizeMB)) {
-                alert(`הקובץ ${file.name} גדול מדי. גודל מקסימלי: ${this.maxSizeMB}MB`);
-                return;
-            }
-
-            this.files.push(file);
-            this.createPreview(file, this.files.length - 1);
-        });
-
-        this.updateInput();
+        this.createPreview(file);
     },
 
-    async createPreview(file, index) {
+    async createPreview(file) {
         try {
             const dataUrl = await FileUtils.createThumbnail(file);
             
-            const previewEl = document.createElement('div');
-            previewEl.className = 'file-preview';
-            previewEl.setAttribute('data-index', index);
-            previewEl.innerHTML = `
-                <img src="${dataUrl}" alt="${file.name}">
-                <button type="button" class="file-preview__remove" aria-label="הסר תמונה">×</button>
+            this.preview.innerHTML = `
+                <div class="file-preview">
+                    <img src="${dataUrl}" alt="${file.name}">
+                    <button type="button" class="file-preview__remove" aria-label="הסר תמונה">×</button>
+                </div>
             `;
 
-            previewEl.querySelector('.file-preview__remove').addEventListener('click', () => {
-                this.removeFile(index);
+            this.preview.querySelector('.file-preview__remove').addEventListener('click', () => {
+                this.clearPreviews();
             });
-
-            this.preview.appendChild(previewEl);
         } catch (error) {
             console.error('Error creating preview:', error);
         }
     },
 
-    removeFile(index) {
-        this.files = this.files.filter((_, i) => i !== index);
-        this.preview.innerHTML = '';
-        
-        // Recreate all previews
-        this.files.forEach((file, i) => {
-            this.createPreview(file, i);
-        });
-
-        this.updateInput();
-    },
-
-    updateInput() {
-        // Create a new DataTransfer to update the input
-        const dataTransfer = new DataTransfer();
-        this.files.forEach(file => dataTransfer.items.add(file));
-        this.input.files = dataTransfer.files;
-    },
-
     clearPreviews() {
-        this.files = [];
         this.preview.innerHTML = '';
         this.input.value = '';
     }

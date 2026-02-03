@@ -3,22 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="הצהרת נגישות - כהן פינויים וירושות חיפה והצפון. מחויבות לנגישות לפי תקן WCAG 2.1 AA">
-    
+    <meta name="description" content="הצהרת נגישות - כהן פינויים וירושות מחויבת לנגישות האתר עבור כלל המשתמשים">
     <title>הצהרת נגישות | כהן פינויים וירושות</title>
     
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="../../shared/css/base.css">
     <link rel="stylesheet" href="../../shared/css/accessibility.css">
     <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        .accessibility-statement {
+            padding: 4rem 0;
+            background-color: var(--color-background);
+        }
+        
+        .accessibility-statement__content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .accessibility-statement h1 {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .accessibility-statement h2 {
+            font-size: 1.75rem;
+            color: var(--color-secondary);
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--color-accent);
+            padding-bottom: 0.5rem;
+        }
+        
+        .accessibility-statement h3 {
+            font-size: 1.25rem;
+            color: var(--color-text);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .accessibility-statement p {
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        
+        .accessibility-statement ul {
+            list-style: disc;
+            margin-right: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .accessibility-statement li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        
+        .accessibility-statement a {
+            color: var(--color-primary);
+            text-decoration: underline;
+        }
+        
+        .accessibility-statement a:hover {
+            color: var(--color-accent);
+        }
+        
+        .contact-box {
+            background-color: var(--color-accent-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .contact-box h3 {
+            margin-top: 0;
+        }
+        
+        .update-date {
+            text-align: center;
+            color: var(--color-text-light);
+            font-style: italic;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+        }
+    </style>
 </head>
 <body>
-    <!-- Skip to Content Link -->
     <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
 
-    <!-- ========================================
-         HEADER
-         ======================================== -->
     <header class="header" role="banner">
         <div class="container header__container">
             <div class="header__logo">
@@ -29,230 +104,132 @@
             </div>
             <nav class="header__nav" role="navigation" aria-label="ניווט ראשי">
                 <ul class="header__nav-list">
-                    <li><a href="index.html">עמוד הבית</a></li>
-                    <li><a href="index.html#contact" class="btn btn-primary btn-sm">צור קשר</a></li>
+                    <li><a href="index.html">חזרה לעמוד הראשי</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- ========================================
-         MAIN CONTENT
-         ======================================== -->
-    <main id="main-content" role="main" class="legal-page">
-        <div class="container">
-            
-            <h1>הצהרת נגישות</h1>
-            <p class="legal-updated">עודכן לאחרונה: פברואר 2026</p>
+    <main id="main-content" role="main">
+        <section class="accessibility-statement">
+            <div class="accessibility-statement__content">
+                <h1>הצהרת נגישות</h1>
 
-            <!-- Commitment -->
-            <section class="legal-section">
-                <h2>מחויבות לנגישות</h2>
+                <h2>הסדרי נגישות</h2>
                 <p>
-                    כהן פינויים וירושות מחויבת להנגיש את האתר שלה לאנשים עם מוגבלויות,
-                    בהתאם לחוק שוויון זכויות לאנשים עם מוגבלות, התשנ"ח-1998,
-                    ולתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע"ג-2013.
+                    כהן פינויים וירושות מאמינה שלכל אדם הזכות לשוויון הזדמנויות ברחבי האינטרנט. 
+                    לשם כך, אנו פועלים למען זכות זו, ומשקיעים מאמצים ומשאבים רבים על מנת להנגיש את כל 
+                    דפי התוכן והשירותים שאנו מציעים.
                 </p>
-                <p>
-                    אנו שואפים להבטיח שהאתר שלנו יהיה נגיש לכלל המשתמשים,
-                    ללא קשר ליכולותיהם או לטכנולוגיה בה הם משתמשים.
-                </p>
-            </section>
 
-            <!-- Standard -->
-            <section class="legal-section">
-                <h2>תקן נגישות</h2>
+                <h2>מבוא</h2>
                 <p>
-                    האתר עומד בדרישות תקן הנגישות הבינלאומי WCAG 2.1 ברמה AA
-                    (Web Content Accessibility Guidelines).
+                    האינטרנט מהווה כיום את המאגר הגדול ביותר לחופש המידע עבור כלל המשתמשים, ומשתמשים 
+                    בעלי מוגבלויות בפרט. ככזה, אנו שמים חשיבות רבה במתן אפשרות שווה לאנשים עם מוגבלות 
+                    לשימוש במידע המוצג באתר, ולאפשר חווית גלישה טובה יותר.
                 </p>
                 <p>
-                    תקן זה מגדיר כיצד להפוך תכני אינטרנט לנגישים יותר עבור אנשים עם מוגבלויות,
-                    כולל מוגבלויות ראייה, שמיעה, תנועה וקוגניציה.
+                    אנו שואפים להבטיח כי השירותים הדיגיטליים יהיו נגישים לאנשים עם מוגבלויות, ועל כן 
+                    הושקעו משאבים רבים להקל את השימוש באתר עבור אנשים עם מוגבלויות, ככל האפשר, מתוך 
+                    אמונה כי לכל אדם מגיעה הזכות לחיות בשוויון, כבוד, נוחות ועצמאות.
                 </p>
-            </section>
+                <p>
+                    כדי לממש הבטחה זו, אנו שואפים לדבוק ככל האפשר בהמלצות התקן הישראלי (ת"י 5568) 
+                    לנגישות תכנים באינטרנט ברמת AA ומסמך WCAG 2.1 הבינלאומי.
+                </p>
 
-            <!-- Features -->
-            <section class="legal-section">
-                <h2>תכונות נגישות באתר</h2>
-                <p>באתר זה יושמו התכונות הבאות לשיפור הנגישות:</p>
-                
-                <h3>ניווט ומבנה</h3>
+                <h2>כיצד עובדת ההנגשה באתר?</h2>
+                <p>
+                    באתר מוצב תפריט נגישות אינטראקטיבי. לחיצה על כפתור הנגישות מאפשרת את פתיחת 
+                    התפריט המכיל כפתורי ההנגשה. לאחר בחירת נושא בתפריט יש להמתין לטעינת הדף.
+                </p>
+                <p>
+                    התוכנה פועלת בדפדפנים הפופולריים: Chrome, Firefox, Safari, Edge, Opera.
+                </p>
+
+                <h2>אפשרויות הנגישות בתפריט</h2>
                 <ul>
-                    <li>מבנה כותרות היררכי וסמנטי (H1, H2, H3)</li>
-                    <li>קישור "דלג לתוכן הראשי" בתחילת כל עמוד</li>
-                    <li>ניווט באמצעות מקלדת (Tab, Enter, Escape)</li>
-                    <li>סימון ברור של אלמנט בפוקוס</li>
-                    <li>תגיות ARIA לקוראי מסך</li>
+                    <li><strong>התאמה לניווט מקלדת</strong> - מתן אפשרות לניווט ע"י מקלדת</li>
+                    <li><strong>התאמה לקורא מסך</strong> - התאמת האתר עבור טכנולוגיות מסייעות כגון NVDA, JAWS</li>
+                    <li><strong>חסימת הבהובים</strong> - עצירת אלמנטים נעים וחסימת הבהובים</li>
+                    <li><strong>הגדלת גופן</strong> - הגדלת פונט האתר ל-4 גדלים שונים</li>
+                    <li><strong>התאמות ניגודיות</strong> - שינוי ניגודיות צבעי האתר (ניגודיות גבוהה, ניגודיות הפוכה)</li>
+                    <li><strong>מצב גווני אפור</strong> - המרת האתר לגווני אפור</li>
+                    <li><strong>פונט קריא</strong> - שינוי הפונט לפונט קריא יותר</li>
+                    <li><strong>הדגשת קישורים</strong> - הדגשת קישורים באתר לזיהוי קל יותר</li>
+                    <li><strong>הצגת תיאור חלופי</strong> - הצגת תיאור אלטרנטיבי לתמונות</li>
                 </ul>
 
-                <h3>תוכן</h3>
-                <ul>
-                    <li>טקסט חלופי (Alt) לתמונות</li>
-                    <li>ניגודיות צבעים מספקת (יחס 4.5:1 לפחות)</li>
-                    <li>תמיכה בכיוון RTL (ימין לשמאל) לעברית</li>
-                    <li>טפסים עם תוויות ברורות והודעות שגיאה נגישות</li>
-                </ul>
-
-                <h3>כלי נגישות</h3>
-                <p>באתר קיים כפתור נגישות (בפינה השמאלית התחתונה) המאפשר:</p>
-                <ul>
-                    <li>הגדלה והקטנה של גודל הטקסט</li>
-                    <li>מצב ניגודיות גבוהה</li>
-                    <li>תצוגה בגווני אפור</li>
-                    <li>הדגשת קישורים</li>
-                    <li>גופן קריא</li>
-                    <li>עצירת אנימציות</li>
-                </ul>
-
-                <h3>תאימות טכנית</h3>
-                <ul>
-                    <li>תמיכה בקוראי מסך (NVDA, JAWS, VoiceOver)</li>
-                    <li>תצוגה מותאמת למכשירים ניידים (Responsive)</li>
-                    <li>כפתורים ואזורי לחיצה בגודל מינימלי 44x44 פיקסלים</li>
-                </ul>
-            </section>
-
-            <!-- Known Limitations -->
-            <section class="legal-section">
-                <h2>מגבלות ידועות</h2>
+                <h2>שימוש ברכיבים ואתרי צד שלישי</h2>
                 <p>
-                    למרות מאמצינו להנגיש את כל תכני האתר, ייתכן שחלקים מסוימים
-                    אינם נגישים באופן מלא. אנו עובדים באופן שוטף לשיפור הנגישות.
-                </p>
-                <p>מגבלות ידועות:</p>
-                <ul>
-                    <li>תמונות שהועלו על ידי משתמשים עשויות להיות חסרות טקסט חלופי</li>
-                    <li>תוכן ישן יותר עשוי שלא לעמוד בכל דרישות הנגישות</li>
-                </ul>
-            </section>
-
-            <!-- Browsers -->
-            <section class="legal-section">
-                <h2>דפדפנים נתמכים</h2>
-                <p>האתר נבדק ותומך בדפדפנים הבאים:</p>
-                <ul>
-                    <li>Google Chrome (גרסה אחרונה)</li>
-                    <li>Mozilla Firefox (גרסה אחרונה)</li>
-                    <li>Microsoft Edge (גרסה אחרונה)</li>
-                    <li>Apple Safari (גרסה אחרונה)</li>
-                </ul>
-            </section>
-
-            <!-- Contact -->
-            <section class="legal-section">
-                <h2>פניות בנושא נגישות</h2>
-                <p>
-                    אם נתקלתם בבעיית נגישות באתר, או שיש לכם הצעות לשיפור,
-                    נשמח לשמוע מכם.
-                </p>
-                <p>
-                    ניתן לפנות אלינו באמצעות <a href="index.html#contact">טופס יצירת הקשר</a>
-                    ולציין שמדובר בפנייה בנושא נגישות.
+                    כאשר נעשה שימוש ברכיבים או אתרי אינטרנט של צד שלישי באתר כגון פייסבוק, אינסטגרם, 
+                    יוטיוב, גוגל מפות וכו', שאינם בשליטתנו, ייתכן והדבר יציב אתגרים בשימוש באתר בידי 
+                    אנשים בעלי מוגבלויות שאין ביכולתנו לתקן.
                 </p>
 
-                <div class="accessibility-contact">
-                    <h3>פרטי רכז/ת נגישות</h3>
-                    <!-- TODO: Update with actual accessibility coordinator details -->
+                <div class="contact-box">
+                    <h3>פניה לרכז הנגישות</h3>
                     <p>
-                        <strong>שם:</strong> [יעודכן בקרוב]<br>
-                        <strong>תפקיד:</strong> רכז/ת נגישות<br>
-                        <strong>דרכי יצירת קשר:</strong> <a href="index.html#contact">טופס יצירת קשר</a>
+                        אם במהלך הגלישה באתר נתקלתם בקושי בנושא נגישות, צוות השירות של החברה עומד 
+                        לרשותכם לפנייה בנושאי נגישות. נשמח לקבל מכם משוב.
+                    </p>
+                    <p>
+                        ניתן ליצור קשר באמצעות <a href="index.html#contact">טופס יצירת הקשר באתר</a>.
                     </p>
                 </div>
-            </section>
 
-            <!-- Third Party -->
-            <section class="legal-section">
-                <h2>שירותי צד שלישי</h2>
+                <h2>הסדרי נגישות פיזיים</h2>
                 <p>
-                    האתר משתמש בשירות Formspree לקבלת טפסים.
-                    אנו מוודאים שספקי השירות שלנו עומדים בתקני נגישות.
+                    השירות שלנו הוא שירות שטח, כאשר הצוות מגיע אל הלקוח. אנו מתחייבים לספק שירות 
+                    נגיש ומכובד לכל לקוחותינו, לרבות אנשים עם מוגבלויות.
                 </p>
-            </section>
+                <ul>
+                    <li>צוות מקצועי ואדיב המיומן בשירות לאנשים עם מוגבלויות</li>
+                    <li>גמישות בתיאום פגישות והתאמה לצרכים המיוחדים של כל לקוח</li>
+                    <li>תקשורת ברורה ומותאמת אישית</li>
+                </ul>
 
-            <!-- Declaration Date -->
-            <section class="legal-section">
-                <h2>תאריך הצהרה</h2>
-                <p>הצהרת נגישות זו עודכנה לאחרונה בתאריך: פברואר 2026</p>
-                <p>הנגישות באתר נבדקת ומעודכנת באופן שוטף.</p>
-            </section>
+                <h2>הבהרה</h2>
+                <p>
+                    חרף מאמצנו לאפשר גלישה באתר נגיש עבור כל דפי האתר, יתכן ויתגלו דפים באתר שטרם 
+                    הונגשו, או שטרם נמצא הפתרון הטכנולוגי המתאים.
+                </p>
+                <p>
+                    אנו ממשיכים במאמצים לשפר את נגישות האתר, ככל האפשר, וזאת מתוך אמונה ומחויבות 
+                    מוסרית לאפשר שימוש באתר לכלל האוכלוסייה לרבות אנשים עם מוגבלויות.
+                </p>
 
-        </div>
+                <p class="update-date">
+                    תאריך עדכון אחרון: פברואר 2026
+                </p>
+            </div>
+        </section>
     </main>
 
-    <!-- ========================================
-         FOOTER
-         ======================================== -->
     <footer class="footer" role="contentinfo">
         <div class="container">
+            <div class="footer__content">
+                <div class="footer__info">
+                    <h3 class="footer__title">כהן פינויים וירושות</h3>
+                    <p class="footer__description">
+                        שירותי פינוי מקצועיים באזור חיפה והצפון.
+                    </p>
+                </div>
+                <div class="footer__links">
+                    <h4 class="footer__subtitle">קישורים</h4>
+                    <ul>
+                        <li><a href="terms.html">תנאי שימוש</a></li>
+                        <li><a href="terms.html#privacy">מדיניות פרטיות</a></li>
+                        <li><a href="accessibility-statement.html">הצהרת נגישות</a></li>
+                    </ul>
+                </div>
+            </div>
             <div class="footer__bottom">
                 <p>&copy; 2026 כהן פינויים וירושות. כל הזכויות שמורות.</p>
-                <p><a href="index.html">חזרה לעמוד הבית</a> | <a href="terms.html">תנאי שימוש</a></p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="../../shared/js/utils.js"></script>
     <script src="../../shared/js/accessibility.js"></script>
-
-    <style>
-        /* Legal Page Specific Styles (same as terms.html) */
-        .legal-page {
-            padding: var(--spacing-2xl) 0;
-        }
-
-        .legal-updated {
-            color: var(--color-text-muted);
-            font-size: var(--font-size-sm);
-            margin-bottom: var(--spacing-xl);
-        }
-
-        .legal-section {
-            margin-bottom: var(--spacing-2xl);
-            padding-bottom: var(--spacing-xl);
-            border-bottom: 1px solid var(--color-secondary-dark);
-        }
-
-        .legal-section:last-child {
-            border-bottom: none;
-        }
-
-        .legal-section h2 {
-            color: var(--color-primary-dark);
-            margin-bottom: var(--spacing-lg);
-        }
-
-        .legal-section h3 {
-            font-size: var(--font-size-md);
-            margin-top: var(--spacing-lg);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .legal-section ul {
-            padding-right: var(--spacing-lg);
-            margin-bottom: var(--spacing-md);
-        }
-
-        .legal-section li {
-            margin-bottom: var(--spacing-xs);
-        }
-
-        .accessibility-contact {
-            background-color: var(--color-secondary);
-            padding: var(--spacing-lg);
-            border-radius: var(--radius-md);
-            margin-top: var(--spacing-lg);
-        }
-
-        .accessibility-contact h3 {
-            margin-top: 0;
-        }
-
-        .accessibility-contact p {
-            margin-bottom: 0;
-        }
-    </style>
 </body>
 </html>
