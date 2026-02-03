@@ -522,12 +522,30 @@
 /* File Upload Styling */
 .file-upload {
     position: relative;
-    transition: all var(--transition-fast);
+    transition: all 0.3s ease;
 }
 
 /* Drag feedback - entire upload area */
 .file-upload--dragging {
     transform: scale(1.02);
+}
+
+/* Make sure label gets dragging class too */
+.file-upload--dragging .file-upload__label {
+    border-color: var(--color-accent) !important;
+    border-style: solid !important;
+    border-width: 3px !important;
+    background-color: rgba(212, 165, 116, 0.25) !important;
+    box-shadow: 0 0 25px rgba(212, 165, 116, 0.5) !important;
+}
+
+.file-upload--dragging .file-upload__icon {
+    transform: scale(1.4);
+    animation: bounce 0.4s ease infinite;
+}
+
+.file-upload--dragging .file-upload__text::after {
+    content: " ✨ שחררו כאן";
 }
 
 .file-upload__input {
@@ -587,6 +605,7 @@
 .file-upload__icon {
     font-size: 32px;
     margin-bottom: var(--spacing-sm);
+    transition: transform 0.3s ease;
 }
 
 .file-upload__text {
