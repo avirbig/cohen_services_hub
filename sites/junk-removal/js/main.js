@@ -136,21 +136,23 @@ const ContactForm = {
 
         try {
             const formData = new FormData(this.form);
+            
+            // Web3Forms requires files to be sent without the 'Accept: application/json' header
+            // when files are included, so let the browser set the correct Content-Type
             const response = await fetch(this.form.action, {
                 method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
+                body: formData
             });
 
-            if (response.ok) {
+            const result = await response.json();
+
+            if (response.ok && result.success) {
                 // Success
                 FormUtils.showSuccess(this.form, 'הבקשה נשלחה בהצלחה! ניצור איתך קשר בהקדם');
                 this.form.reset();
                 FileUpload.clearPreviews();
             } else {
-                throw new Error('Form submission failed');
+                throw new Error(result.message || 'Form submission failed');
             }
         } catch (error) {
             console.error('Form submission error:', error);
