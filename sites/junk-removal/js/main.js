@@ -128,7 +128,7 @@ const ContactForm = {
         }
     },
 
-    async handleSubmit(e) {
+    handleSubmit(e) {
         // Clear previous messages
         const existingSuccess = this.form.querySelector('.form-success-message');
         const existingError = this.form.querySelector('.form-error-alert');
