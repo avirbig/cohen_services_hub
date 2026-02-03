@@ -140,11 +140,30 @@ const ContactForm = {
             return;
         }
 
+        // Check if Forminit SDK is loaded
+        if (!this.forminit) {
+            // Try to initialize again if SDK is now available
+            if (typeof Forminit !== 'undefined') {
+                this.forminit = new Forminit();
+            } else {
+                console.error('Forminit SDK not loaded');
+                FormUtils.showFormError(this.form, 'שגיאה טכנית. אנא רענן את הדף ונסה שנית.');
+                return;
+            }
+        }
+
         // Show loading state
         this.setLoading(true);
 
         try {
             const formData = new FormData(this.form);
+            
+            // Debug: log form data
+            console.log('Submitting form with data:');
+            for (let [key, value] of formData.entries()) {
+                console.log(`  ${key}:`, value);
+            }
+            
             const { data, error } = await this.forminit.submit(this.FORM_ID, formData);
 
             if (error) {
