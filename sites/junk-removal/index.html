@@ -233,24 +233,25 @@
                 <p class="section-subtitle">מלאו את הפרטים ונחזור אליכם בהקדם</p>
 
                 <!-- 
-                    WEB3FORMS - FREE UNLIMITED FORM SUBMISSIONS
-                    Configured and ready to receive submissions at: yemenhood@gmail.com
+                    FORMSUBMIT.CO - FREE UNLIMITED FORM SUBMISSIONS WITH FILE UPLOAD
+                    Submissions will be sent to: yemenhood@gmail.com
+                    First submission will require email confirmation
                 -->
                 <form class="contact-form" 
                       id="contact-form"
-                      action="https://api.web3forms.com/submit" 
+                      action="https://formsubmit.co/yemenhood@gmail.com" 
                       method="POST"
                       enctype="multipart/form-data"
                       novalidate>
                     
-                    <!-- Web3Forms Access Key -->
-                    <input type="hidden" name="access_key" value="d04f9ece-b1bd-46c7-99c8-e1239fe30cfa">
-                    
-                    <!-- Email subject -->
-                    <input type="hidden" name="subject" value="בקשה חדשה לפינוי מהאתר - כהן פינויים">
+                    <!-- Formsubmit configuration -->
+                    <input type="hidden" name="_subject" value="בקשה חדשה לפינוי - כהן פינויים">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://avirbig.github.io/cohen_services_hub/sites/junk-removal/index.html?success=true">
                     
                     <!-- Honeypot field for spam prevention (hidden) -->
-                    <input type="checkbox" name="botcheck" class="hidden" style="display:none">
+                    <input type="text" name="_honey" style="display:none">
 
                     <div class="contact-form__grid">
                         <!-- Full Name -->
@@ -341,21 +342,22 @@
                         <!-- Photo Upload -->
                         <div class="form-group form-group--full">
                             <label for="photos" class="form-label">העלאת תמונות (לא חובה)</label>
-                            <div class="file-upload">
+                            <div class="file-upload" id="file-upload-area">
                                 <input type="file" 
                                        id="photos" 
                                        name="attachment" 
                                        class="file-upload__input"
                                        accept="image/jpeg,image/png,image/heic,image/heif"
+                                       multiple
                                        aria-describedby="photos-help">
                                 <label for="photos" class="file-upload__label">
                                     <span class="file-upload__icon" aria-hidden="true">📷</span>
-                                    <span class="file-upload__text">לחצו לבחירת תמונה</span>
-                                    <span class="file-upload__hint">JPG, PNG או HEIC (עד 5MB)</span>
+                                    <span class="file-upload__text">לחצו לבחירת תמונות או גררו לכאן</span>
+                                    <span class="file-upload__hint">JPG, PNG או HEIC (עד 5 קבצים, עד 5MB כל אחד)</span>
                                 </label>
                                 <div class="file-upload__preview" id="photos-preview" aria-live="polite"></div>
                             </div>
-                            <span id="photos-help" class="form-hint">תמונה עוזרת לנו לתת הערכת מחיר מדויקת יותר</span>
+                            <span id="photos-help" class="form-hint">תמונות עוזרות לנו לתת הערכת מחיר מדויקת יותר</span>
                         </div>
 
                     </div>

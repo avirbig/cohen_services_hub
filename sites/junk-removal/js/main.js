@@ -9,6 +9,17 @@ document.addEventListener('DOMContentLoaded', function() {
     ContactForm.init();
     FileUpload.init();
     SmoothScroll.init();
+    
+    // Check for success redirect from Formsubmit
+    if (window.location.search.includes('success=true')) {
+        // Show success message
+        const form = document.getElementById('contact-form');
+        if (form) {
+            FormUtils.showSuccess(form, 'הבקשה נשלחה בהצלחה! ניצור איתך קשר בהקדם');
+            // Remove query param from URL
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+    }
 });
 
 /* -----------------------------------------
@@ -118,8 +129,6 @@ const ContactForm = {
     },
 
     async handleSubmit(e) {
-        e.preventDefault();
-
         // Clear previous messages
         const existingSuccess = this.form.querySelector('.form-success-message');
         const existingError = this.form.querySelector('.form-error-alert');
@@ -128,38 +137,15 @@ const ContactForm = {
 
         // Validate all fields
         if (!this.validateForm()) {
+            e.preventDefault();
             return;
         }
 
         // Show loading state
         this.setLoading(true);
-
-        try {
-            const formData = new FormData(this.form);
-            
-            // Web3Forms requires files to be sent without the 'Accept: application/json' header
-            // when files are included, so let the browser set the correct Content-Type
-            const response = await fetch(this.form.action, {
-                method: 'POST',
-                body: formData
-            });
-
-            const result = await response.json();
-
-            if (response.ok && result.success) {
-                // Success
-                FormUtils.showSuccess(this.form, 'הבקשה נשלחה בהצלחה! ניצור איתך קשר בהקדם');
-                this.form.reset();
-                FileUpload.clearPreviews();
-            } else {
-                throw new Error(result.message || 'Form submission failed');
-            }
-        } catch (error) {
-            console.error('Form submission error:', error);
-            FormUtils.showFormError(this.form, 'אירעה שגיאה בשליחת הטופס. אנא נסו שנית.');
-        } finally {
-            this.setLoading(false);
-        }
+        
+        // Let the form submit naturally to Formsubmit.co
+        // It will redirect back to our page with ?success=true
     },
 
     validateForm() {
@@ -240,89 +226,155 @@ const ContactForm = {
 const FileUpload = {
     input: null,
     preview: null,
+    uploadArea: null,
+    label: null,
+    files: [],
+    maxFiles: 5,
     maxSizeMB: 5,
 
     init() {
         this.input = document.getElementById('photos');
         this.preview = document.getElementById('photos-preview');
+        this.uploadArea = document.getElementById('file-upload-area');
         
-        if (!this.input || !this.preview) return;
-
+        if (!this.input || !this.preview || !this.uploadArea) return;
+        
+        this.label = this.uploadArea.querySelector('.file-upload__label');
         this.bindEvents();
     },
 
     bindEvents() {
-        this.input.addEventListener('change', (e) => this.handleFile(e.target.files[0]));
+        this.input.addEventListener('change', (e) => this.handleFiles(e.target.files));
 
-        // Drag and drop
-        const label = this.input.closest('.file-upload').querySelector('.file-upload__label');
-        if (label) {
-            label.addEventListener('dragover', (e) => {
+        // Drag and drop on the entire upload area
+        this.uploadArea.addEventListener('dragenter', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            this.showDragFeedback(true);
+        });
+
+        this.uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            this.showDragFeedback(true);
+        });
+
+        this.uploadArea.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            // Only hide feedback if leaving the upload area completely
+            if (!this.uploadArea.contains(e.relatedTarget)) {
+                this.showDragFeedback(false);
+            }
+        });
+
+        this.uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            this.showDragFeedback(false);
+            
+            if (e.dataTransfer.files.length > 0) {
+                this.handleFiles(e.dataTransfer.files);
+            }
+        });
+
+        // Also add visual feedback to label
+        if (this.label) {
+            this.label.addEventListener('dragenter', (e) => {
                 e.preventDefault();
-                label.classList.add('dragover');
-            });
-
-            label.addEventListener('dragleave', () => {
-                label.classList.remove('dragover');
-            });
-
-            label.addEventListener('drop', (e) => {
-                e.preventDefault();
-                label.classList.remove('dragover');
-                if (e.dataTransfer.files[0]) {
-                    this.handleFile(e.dataTransfer.files[0]);
-                    // Update the input element
-                    const dataTransfer = new DataTransfer();
-                    dataTransfer.items.add(e.dataTransfer.files[0]);
-                    this.input.files = dataTransfer.files;
-                }
+                this.showDragFeedback(true);
             });
         }
     },
 
-    handleFile(file) {
-        if (!file) {
-            this.clearPreviews();
-            return;
+    showDragFeedback(show) {
+        if (show) {
+            this.uploadArea.classList.add('file-upload--dragging');
+            if (this.label) {
+                this.label.classList.add('dragover');
+            }
+        } else {
+            this.uploadArea.classList.remove('file-upload--dragging');
+            if (this.label) {
+                this.label.classList.remove('dragover');
+            }
         }
+    },
+
+    handleFiles(fileList) {
+        const newFiles = Array.from(fileList);
         
-        // Validate file type
-        if (!FileUtils.validateFileType(file)) {
-            alert(`סוג קובץ לא נתמך: ${file.name}`);
-            this.input.value = '';
-            return;
-        }
+        newFiles.forEach(file => {
+            // Check max files
+            if (this.files.length >= this.maxFiles) {
+                alert(`ניתן להעלות עד ${this.maxFiles} קבצים`);
+                return;
+            }
 
-        // Validate file size
-        if (!FileUtils.validateFileSize(file, this.maxSizeMB)) {
-            alert(`הקובץ ${file.name} גדול מדי. גודל מקסימלי: ${this.maxSizeMB}MB`);
-            this.input.value = '';
-            return;
-        }
+            // Validate file type
+            if (!FileUtils.validateFileType(file)) {
+                alert(`סוג קובץ לא נתמך: ${file.name}`);
+                return;
+            }
 
-        this.createPreview(file);
+            // Validate file size
+            if (!FileUtils.validateFileSize(file, this.maxSizeMB)) {
+                alert(`הקובץ ${file.name} גדול מדי. גודל מקסימלי: ${this.maxSizeMB}MB`);
+                return;
+            }
+
+            this.files.push(file);
+        });
+
+        this.updatePreviews();
+        this.updateInputFiles();
     },
 
-    async createPreview(file) {
+    updatePreviews() {
+        this.preview.innerHTML = '';
+        
+        this.files.forEach((file, index) => {
+            this.createPreview(file, index);
+        });
+    },
+
+    async createPreview(file, index) {
         try {
             const dataUrl = await FileUtils.createThumbnail(file);
             
-            this.preview.innerHTML = `
-                <div class="file-preview">
-                    <img src="${dataUrl}" alt="${file.name}">
-                    <button type="button" class="file-preview__remove" aria-label="הסר תמונה">×</button>
-                </div>
+            const previewEl = document.createElement('div');
+            previewEl.className = 'file-preview';
+            previewEl.innerHTML = `
+                <img src="${dataUrl}" alt="${file.name}">
+                <button type="button" class="file-preview__remove" data-index="${index}" aria-label="הסר תמונה">×</button>
+                <span class="file-preview__name">${file.name.substring(0, 15)}${file.name.length > 15 ? '...' : ''}</span>
             `;
 
-            this.preview.querySelector('.file-preview__remove').addEventListener('click', () => {
-                this.clearPreviews();
+            previewEl.querySelector('.file-preview__remove').addEventListener('click', (e) => {
+                const idx = parseInt(e.target.dataset.index);
+                this.removeFile(idx);
             });
+
+            this.preview.appendChild(previewEl);
         } catch (error) {
             console.error('Error creating preview:', error);
         }
     },
 
+    removeFile(index) {
+        this.files.splice(index, 1);
+        this.updatePreviews();
+        this.updateInputFiles();
+    },
+
+    updateInputFiles() {
+        const dataTransfer = new DataTransfer();
+        this.files.forEach(file => dataTransfer.items.add(file));
+        this.input.files = dataTransfer.files;
+    },
+
     clearPreviews() {
+        this.files = [];
         this.preview.innerHTML = '';
         this.input.value = '';
     }
