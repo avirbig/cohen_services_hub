@@ -1,0 +1,24 @@
+# robots.txt for Cohen Pinuyim - Junk Removal Services
+# Website: https://avirbig.github.io/cohen_services_hub/sites/junk-removal/
+
+# Allow all search engine crawlers
+User-agent: *
+
+# Allow indexing of all pages
+Allow: /
+
+# Disallow admin and development files
+Disallow: /test/
+Disallow: /*.json$
+Disallow: /PROJECT_INSTRUCTIONS.md
+
+# Important pages to crawl
+Allow: /index.html
+Allow: /terms.html
+Allow: /accessibility-statement.html
+
+# Sitemap location
+Sitemap: https://avirbig.github.io/cohen_services_hub/sites/junk-removal/sitemap.xml
+
+# Crawl-delay for politeness (optional)
+Crawl-delay: 1
