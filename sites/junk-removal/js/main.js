@@ -93,6 +93,8 @@ const ContactForm = {
     submitBtn: null,
     submitText: null,
     submitLoading: null,
+    forminit: null,
+    FORM_ID: '4gveukzhs12',
 
     init() {
         this.form = document.getElementById('contact-form');
@@ -101,6 +103,11 @@ const ContactForm = {
         this.submitBtn = this.form.querySelector('.contact-form__submit');
         this.submitText = this.form.querySelector('.contact-form__submit-text');
         this.submitLoading = this.form.querySelector('.contact-form__submit-loading');
+        
+        // Initialize Forminit SDK
+        if (typeof Forminit !== 'undefined') {
+            this.forminit = new Forminit();
+        }
 
         this.bindEvents();
     },
@@ -117,18 +124,11 @@ const ContactForm = {
                 }
             });
         });
-
-        // Sync email to replyto field
-        const emailInput = this.form.querySelector('#email');
-        const replytoInput = this.form.querySelector('#replyto');
-        if (emailInput && replytoInput) {
-            emailInput.addEventListener('input', () => {
-                replytoInput.value = emailInput.value;
-            });
-        }
     },
 
-    handleSubmit(e) {
+    async handleSubmit(e) {
+        e.preventDefault();
+        
         // Clear previous messages
         const existingSuccess = this.form.querySelector('.form-success-message');
         const existingError = this.form.querySelector('.form-error-alert');
@@ -137,15 +137,30 @@ const ContactForm = {
 
         // Validate all fields
         if (!this.validateForm()) {
-            e.preventDefault();
             return;
         }
 
         // Show loading state
         this.setLoading(true);
-        
-        // Let the form submit naturally to Formsubmit.co
-        // It will redirect back to our page with ?success=true
+
+        try {
+            const formData = new FormData(this.form);
+            const { data, error } = await this.forminit.submit(this.FORM_ID, formData);
+
+            if (error) {
+                throw new Error(error.message || 'שגיאה בשליחת הטופס');
+            }
+
+            // Success
+            FormUtils.showSuccess(this.form, 'הבקשה נשלחה בהצלחה! ניצור איתך קשר בהקדם');
+            this.form.reset();
+            FileUpload.clearPreviews();
+        } catch (error) {
+            console.error('Form submission error:', error);
+            FormUtils.showFormError(this.form, error.message || 'אירעה שגיאה בשליחת הטופס. אנא נסו שנית.');
+        } finally {
+            this.setLoading(false);
+        }
     },
 
     validateForm() {

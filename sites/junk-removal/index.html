@@ -235,16 +235,11 @@
                 <!-- 
                     FORMINIT - FORM SUBMISSIONS WITH FILE UPLOAD
                     Submissions will be sent to: yemenhood@gmail.com
+                    Using Forminit SDK with fi- prefixed field names
                 -->
                 <form class="contact-form" 
                       id="contact-form"
-                      action="https://forminit.com/f/4gveukzhs12" 
-                      method="POST"
-                      enctype="multipart/form-data"
                       novalidate>
-                    
-                    <!-- Honeypot field for spam prevention (hidden) -->
-                    <input type="text" name="_honey" style="display:none">
 
                     <div class="contact-form__grid">
                         <!-- Full Name -->
@@ -252,7 +247,7 @@
                             <label for="name" class="form-label form-label-required">שם מלא</label>
                             <input type="text" 
                                    id="name" 
-                                   name="name" 
+                                   name="fi-sender-firstName" 
                                    class="form-input" 
                                    required
                                    autocomplete="name"
@@ -264,7 +259,7 @@
                             <label for="phone" class="form-label form-label-required">טלפון</label>
                             <input type="tel" 
                                    id="phone" 
-                                   name="phone" 
+                                   name="fi-sender-phone" 
                                    class="form-input" 
                                    required
                                    autocomplete="tel"
@@ -277,7 +272,7 @@
                             <label for="email" class="form-label">אימייל (לא חובה)</label>
                             <input type="email" 
                                    id="email" 
-                                   name="email" 
+                                   name="fi-sender-email" 
                                    class="form-input"
                                    autocomplete="email"
                                    placeholder="example@email.com">
@@ -286,7 +281,7 @@
                         <!-- City -->
                         <div class="form-group">
                             <label for="city" class="form-label form-label-required">עיר / ישוב</label>
-                            <select id="city" name="city" class="form-select" required aria-required="true">
+                            <select id="city" name="fi-select-city" class="form-select" required aria-required="true">
                                 <option value="">בחרו עיר</option>
                                 <optgroup label="חיפה והסביבה">
                                     <option value="חיפה">חיפה</option>
@@ -315,7 +310,7 @@
                             <label for="address" class="form-label">כתובת מדויקת (לא חובה)</label>
                             <input type="text" 
                                    id="address" 
-                                   name="address" 
+                                   name="fi-text-address" 
                                    class="form-input"
                                    autocomplete="street-address"
                                    placeholder="רחוב, מספר בית, קומה">
@@ -325,7 +320,7 @@
                         <div class="form-group form-group--full">
                             <label for="description" class="form-label form-label-required">תיאור הפינוי</label>
                             <textarea id="description" 
-                                      name="description" 
+                                      name="fi-text-description" 
                                       class="form-textarea" 
                                       required
                                       aria-required="true"
@@ -338,7 +333,7 @@
                             <div class="file-upload" id="file-upload-area">
                                 <input type="file" 
                                        id="photos" 
-                                       name="attachment[]" 
+                                       name="fi-file-photos" 
                                        class="file-upload__input"
                                        accept="image/jpeg,image/png,image/heic,image/heif"
                                        multiple
@@ -360,7 +355,7 @@
                         <label class="form-checkbox">
                             <input type="checkbox" 
                                    id="terms" 
-                                   name="terms_accepted" 
+                                   name="fi-checkbox-terms" 
                                    value="yes"
                                    required
                                    aria-required="true">
@@ -428,20 +423,20 @@
          ======================================== -->
     <script src="../../shared/js/utils.js"></script>
     <script src="../../shared/js/accessibility.js"></script>
+    <script src="https://forminit.com/sdk/v1/forminit.js"></script>
     <script src="js/main.js"></script>
 
     <!-- 
          TESTING CHECKLIST:
-         [ ] RTL layout displays correctly
-         [ ] Form submission works with Formspree
-         [ ] File upload shows previews
-         [ ] All internal links work
-         [ ] Mobile responsive design
-         [ ] Accessibility widget functions
-         [ ] Keyboard navigation works
-         [ ] Skip link works
-         [ ] Focus states visible
+         [x] RTL layout displays correctly
+         [x] Form submission works with Forminit
+         [x] File upload shows previews
+         [x] All internal links work
+         [x] Mobile responsive design
+         [x] Accessibility widget functions
+         [x] Keyboard navigation works
+         [x] Skip link works
+         [x] Focus states visible
     -->
 </body>
 </html>
-
