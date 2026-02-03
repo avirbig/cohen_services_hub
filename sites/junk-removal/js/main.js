@@ -140,18 +140,6 @@ const ContactForm = {
             return;
         }
 
-        // Check if Forminit SDK is loaded
-        if (!this.forminit) {
-            // Try to initialize again if SDK is now available
-            if (typeof Forminit !== 'undefined') {
-                this.forminit = new Forminit();
-            } else {
-                console.error('Forminit SDK not loaded');
-                FormUtils.showFormError(this.form, 'שגיאה טכנית. אנא רענן את הדף ונסה שנית.');
-                return;
-            }
-        }
-
         // Show loading state
         this.setLoading(true);
 
@@ -164,10 +152,24 @@ const ContactForm = {
                 console.log(`  ${key}:`, value);
             }
             
-            const { data, error } = await this.forminit.submit(this.FORM_ID, formData);
+            // Submit directly to Forminit endpoint
+            const response = await fetch(`https://forminit.com/f/${this.FORM_ID}`, {
+                method: 'POST',
+                body: formData
+            });
 
-            if (error) {
-                throw new Error(error.message || 'שגיאה בשליחת הטופס');
+            console.log('Response status:', response.status);
+            
+            if (!response.ok && response.status !== 302) {
+                const text = await response.text();
+                console.error('Response text:', text);
+                
+                // Try to extract error message
+                const errorMatch = text.match(/Error[^<]*<\/p>/i);
+                if (errorMatch) {
+                    throw new Error(errorMatch[0].replace('</p>', '').trim());
+                }
+                throw new Error('שגיאה בשליחת הטופס');
             }
 
             // Success
