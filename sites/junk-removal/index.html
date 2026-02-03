@@ -233,24 +233,24 @@
                 <p class="section-subtitle">מלאו את הפרטים ונחזור אליכם בהקדם</p>
 
                 <!-- 
-                    FORMSPREE SETUP INSTRUCTIONS:
-                    1. Go to https://formspree.io and create a free account
-                    2. Create a new form
-                    3. Copy your form ID (looks like: f/xyzabc123)
-                    4. Replace YOUR_FORM_ID below with your actual form ID
+                    WEB3FORMS - FREE UNLIMITED FORM SUBMISSIONS
+                    Configured and ready to receive submissions at: yemenhood@gmail.com
                 -->
                 <form class="contact-form" 
                       id="contact-form"
-                      action="https://formspree.io/f/YOUR_FORM_ID" 
+                      action="https://api.web3forms.com/submit" 
                       method="POST"
                       enctype="multipart/form-data"
                       novalidate>
                     
-                    <!-- Honeypot field for spam prevention (hidden) -->
-                    <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+                    <!-- Web3Forms Access Key -->
+                    <input type="hidden" name="access_key" value="d04f9ece-b1bd-46c7-99c8-e1239fe30cfa">
                     
-                    <!-- Email subject for Formspree -->
-                    <input type="hidden" name="_subject" value="בקשה חדשה לפינוי מהאתר">
+                    <!-- Email subject -->
+                    <input type="hidden" name="subject" value="בקשה חדשה לפינוי מהאתר - כהן פינויים">
+                    
+                    <!-- Honeypot field for spam prevention (hidden) -->
+                    <input type="checkbox" name="botcheck" class="hidden" style="display:none">
 
                     <div class="contact-form__grid">
                         <!-- Full Name -->
@@ -287,8 +287,6 @@
                                    class="form-input"
                                    autocomplete="email"
                                    placeholder="example@email.com">
-                            <!-- Connect reply-to for Formspree -->
-                            <input type="hidden" name="_replyto" id="replyto">
                         </div>
 
                         <!-- City -->
