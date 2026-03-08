@@ -92,116 +92,82 @@
     </style>
 </head>
 <body>
-    <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
+    <a href="#main-content" class="skip-link" data-i18n="a11y.skip">דלג לתוכן הראשי</a>
 
     <header class="header" role="banner">
         <div class="container header__container">
             <div class="header__logo">
                 <a href="index.html" aria-label="כהן פינויים וירושות - עמוד הבית">
-                    <span class="header__logo-text">כהן פינויים וירושות</span>
-                    <span class="header__logo-tagline">חיפה והצפון</span>
+                    <span class="header__logo-text" data-i18n="header.logo">כהן פינויים וירושות</span>
+                    <span class="header__logo-tagline" data-i18n="header.tagline">חיפה והצפון</span>
                 </a>
             </div>
             <nav class="header__nav" role="navigation" aria-label="ניווט ראשי">
                 <ul class="header__nav-list">
-                    <li><a href="index.html">חזרה לעמוד הראשי</a></li>
+                    <li><a href="index.html" data-i18n="nav.back">חזרה לעמוד הראשי</a></li>
                 </ul>
             </nav>
+
+            <!-- Language Switcher -->
+            <div class="language-switcher" role="group" aria-label="בחר שפה / Выберите язык">
+                <button class="language-switcher__option language-switcher__option--active" data-lang="he" aria-pressed="true" title="עברית">עב</button>
+                <button class="language-switcher__option" data-lang="ru" aria-pressed="false" title="Русский">RU</button>
+            </div>
         </div>
     </header>
 
     <main id="main-content" role="main">
         <section class="accessibility-statement">
             <div class="accessibility-statement__content">
-                <h1>הצהרת נגישות</h1>
+                <h1 data-i18n="a11y.h1">הצהרת נגישות</h1>
 
-                <h2>הסדרי נגישות</h2>
-                <p>
-                    כהן פינויים וירושות מאמינה שלכל אדם הזכות לשוויון הזדמנויות ברחבי האינטרנט. 
-                    לשם כך, אנו פועלים למען זכות זו, ומשקיעים מאמצים ומשאבים רבים על מנת להנגיש את כל 
-                    דפי התוכן והשירותים שאנו מציעים.
-                </p>
+                <h2 data-i18n="a11y.s1.title">הסדרי נגישות</h2>
+                <p data-i18n="a11y.s1.p">כהן פינויים וירושות מאמינה שלכל אדם הזכות לשוויון הזדמנויות ברחבי האינטרנט. לשם כך, אנו פועלים למען זכות זו, ומשקיעים מאמצים ומשאבים רבים על מנת להנגיש את כל דפי התוכן והשירותים שאנו מציעים.</p>
 
-                <h2>מבוא</h2>
-                <p>
-                    האינטרנט מהווה כיום את המאגר הגדול ביותר לחופש המידע עבור כלל המשתמשים, ומשתמשים 
-                    בעלי מוגבלויות בפרט. ככזה, אנו שמים חשיבות רבה במתן אפשרות שווה לאנשים עם מוגבלות 
-                    לשימוש במידע המוצג באתר, ולאפשר חווית גלישה טובה יותר.
-                </p>
-                <p>
-                    אנו שואפים להבטיח כי השירותים הדיגיטליים יהיו נגישים לאנשים עם מוגבלויות, ועל כן 
-                    הושקעו משאבים רבים להקל את השימוש באתר עבור אנשים עם מוגבלויות, ככל האפשר, מתוך 
-                    אמונה כי לכל אדם מגיעה הזכות לחיות בשוויון, כבוד, נוחות ועצמאות.
-                </p>
-                <p>
-                    כדי לממש הבטחה זו, אנו שואפים לדבוק ככל האפשר בהמלצות התקן הישראלי (ת"י 5568) 
-                    לנגישות תכנים באינטרנט ברמת AA ומסמך WCAG 2.1 הבינלאומי.
-                </p>
+                <h2 data-i18n="a11y.s2.title">מבוא</h2>
+                <p data-i18n="a11y.s2.p1">האינטרנט מהווה כיום את המאגר הגדול ביותר לחופש המידע עבור כלל המשתמשים, ומשתמשים בעלי מוגבלויות בפרט. ככזה, אנו שמים חשיבות רבה במתן אפשרות שווה לאנשים עם מוגבלות לשימוש במידע המוצג באתר, ולאפשר חווית גלישה טובה יותר.</p>
+                <p data-i18n="a11y.s2.p2">אנו שואפים להבטיח כי השירותים הדיגיטליים יהיו נגישים לאנשים עם מוגבלויות, ועל כן הושקעו משאבים רבים להקל את השימוש באתר עבור אנשים עם מוגבלויות, ככל האפשר, מתוך אמונה כי לכל אדם מגיעה הזכות לחיות בשוויון, כבוד, נוחות ועצמאות.</p>
+                <p data-i18n="a11y.s2.p3">כדי לממש הבטחה זו, אנו שואפים לדבוק ככל האפשר בהמלצות התקן הישראלי (ת"י 5568) לנגישות תכנים באינטרנט ברמת AA ומסמך WCAG 2.1 הבינלאומי.</p>
 
-                <h2>כיצד עובדת ההנגשה באתר?</h2>
-                <p>
-                    באתר מוצב תפריט נגישות אינטראקטיבי. לחיצה על כפתור הנגישות מאפשרת את פתיחת 
-                    התפריט המכיל כפתורי ההנגשה. לאחר בחירת נושא בתפריט יש להמתין לטעינת הדף.
-                </p>
-                <p>
-                    התוכנה פועלת בדפדפנים הפופולריים: Chrome, Firefox, Safari, Edge, Opera.
-                </p>
+                <h2 data-i18n="a11y.s3.title">כיצד עובדת ההנגשה באתר?</h2>
+                <p data-i18n="a11y.s3.p1">באתר מוצב תפריט נגישות אינטראקטיבי. לחיצה על כפתור הנגישות מאפשרת את פתיחת התפריט המכיל כפתורי ההנגשה. לאחר בחירת נושא בתפריט יש להמתין לטעינת הדף.</p>
+                <p data-i18n="a11y.s3.p2">התוכנה פועלת בדפדפנים הפופולריים: Chrome, Firefox, Safari, Edge, Opera.</p>
 
-                <h2>אפשרויות הנגישות בתפריט</h2>
+                <h2 data-i18n="a11y.s4.title">אפשרויות הנגישות בתפריט</h2>
                 <ul>
-                    <li><strong>התאמה לניווט מקלדת</strong> - מתן אפשרות לניווט ע"י מקלדת</li>
-                    <li><strong>התאמה לקורא מסך</strong> - התאמת האתר עבור טכנולוגיות מסייעות כגון NVDA, JAWS</li>
-                    <li><strong>חסימת הבהובים</strong> - עצירת אלמנטים נעים וחסימת הבהובים</li>
-                    <li><strong>הגדלת גופן</strong> - הגדלת פונט האתר ל-4 גדלים שונים</li>
-                    <li><strong>התאמות ניגודיות</strong> - שינוי ניגודיות צבעי האתר (ניגודיות גבוהה, ניגודיות הפוכה)</li>
-                    <li><strong>מצב גווני אפור</strong> - המרת האתר לגווני אפור</li>
-                    <li><strong>פונט קריא</strong> - שינוי הפונט לפונט קריא יותר</li>
-                    <li><strong>הדגשת קישורים</strong> - הדגשת קישורים באתר לזיהוי קל יותר</li>
-                    <li><strong>הצגת תיאור חלופי</strong> - הצגת תיאור אלטרנטיבי לתמונות</li>
+                    <li><strong data-i18n="a11y.s4.li1.label">התאמה לניווט מקלדת</strong><span data-i18n="a11y.s4.li1.desc"> - מתן אפשרות לניווט ע"י מקלדת</span></li>
+                    <li><strong data-i18n="a11y.s4.li2.label">התאמה לקורא מסך</strong><span data-i18n="a11y.s4.li2.desc"> - התאמת האתר עבור טכנולוגיות מסייעות כגון NVDA, JAWS</span></li>
+                    <li><strong data-i18n="a11y.s4.li3.label">חסימת הבהובים</strong><span data-i18n="a11y.s4.li3.desc"> - עצירת אלמנטים נעים וחסימת הבהובים</span></li>
+                    <li><strong data-i18n="a11y.s4.li4.label">הגדלת גופן</strong><span data-i18n="a11y.s4.li4.desc"> - הגדלת פונט האתר ל-4 גדלים שונים</span></li>
+                    <li><strong data-i18n="a11y.s4.li5.label">התאמות ניגודיות</strong><span data-i18n="a11y.s4.li5.desc"> - שינוי ניגודיות צבעי האתר (ניגודיות גבוהה, ניגודיות הפוכה)</span></li>
+                    <li><strong data-i18n="a11y.s4.li6.label">מצב גווני אפור</strong><span data-i18n="a11y.s4.li6.desc"> - המרת האתר לגווני אפור</span></li>
+                    <li><strong data-i18n="a11y.s4.li7.label">פונט קריא</strong><span data-i18n="a11y.s4.li7.desc"> - שינוי הפונט לפונט קריא יותר</span></li>
+                    <li><strong data-i18n="a11y.s4.li8.label">הדגשת קישורים</strong><span data-i18n="a11y.s4.li8.desc"> - הדגשת קישורים באתר לזיהוי קל יותר</span></li>
+                    <li><strong data-i18n="a11y.s4.li9.label">הצגת תיאור חלופי</strong><span data-i18n="a11y.s4.li9.desc"> - הצגת תיאור אלטרנטיבי לתמונות</span></li>
                 </ul>
 
-                <h2>שימוש ברכיבים ואתרי צד שלישי</h2>
-                <p>
-                    כאשר נעשה שימוש ברכיבים או אתרי אינטרנט של צד שלישי באתר כגון פייסבוק, אינסטגרם, 
-                    יוטיוב, גוגל מפות וכו', שאינם בשליטתנו, ייתכן והדבר יציב אתגרים בשימוש באתר בידי 
-                    אנשים בעלי מוגבלויות שאין ביכולתנו לתקן.
-                </p>
+                <h2 data-i18n="a11y.s5.title">שימוש ברכיבים ואתרי צד שלישי</h2>
+                <p data-i18n="a11y.s5.p">כאשר נעשה שימוש ברכיבים או אתרי אינטרנט של צד שלישי באתר כגון פייסבוק, אינסטגרם, יוטיוב, גוגל מפות וכו', שאינם בשליטתנו, ייתכן והדבר יציב אתגרים בשימוש באתר בידי אנשים בעלי מוגבלויות שאין ביכולתנו לתקן.</p>
 
                 <div class="contact-box">
-                    <h3>פניה לרכז הנגישות</h3>
-                    <p>
-                        אם במהלך הגלישה באתר נתקלתם בקושי בנושא נגישות, צוות השירות של החברה עומד 
-                        לרשותכם לפנייה בנושאי נגישות. נשמח לקבל מכם משוב.
-                    </p>
-                    <p>
-                        ניתן ליצור קשר באמצעות <a href="index.html#contact">טופס יצירת הקשר באתר</a>.
-                    </p>
+                    <h3 data-i18n="a11y.contact.title">פניה לרכז הנגישות</h3>
+                    <p data-i18n="a11y.contact.p1">אם במהלך הגלישה באתר נתקלתם בקושי בנושא נגישות, צוות השירות של החברה עומד לרשותכם לפנייה בנושאי נגישות. נשמח לקבל מכם משוב.</p>
+                    <p><span data-i18n="a11y.contact.p2.before">ניתן ליצור קשר באמצעות</span> <a href="index.html#contact" data-i18n="a11y.contact.p2.link">טופס יצירת הקשר באתר</a>.</p>
                 </div>
 
-                <h2>הסדרי נגישות פיזיים</h2>
-                <p>
-                    השירות שלנו הוא שירות שטח, כאשר הצוות מגיע אל הלקוח. אנו מתחייבים לספק שירות 
-                    נגיש ומכובד לכל לקוחותינו, לרבות אנשים עם מוגבלויות.
-                </p>
+                <h2 data-i18n="a11y.s6.title">הסדרי נגישות פיזיים</h2>
+                <p data-i18n="a11y.s6.p">השירות שלנו הוא שירות שטח, כאשר הצוות מגיע אל הלקוח. אנו מתחייבים לספק שירות נגיש ומכובד לכל לקוחותינו, לרבות אנשים עם מוגבלויות.</p>
                 <ul>
-                    <li>צוות מקצועי ואדיב המיומן בשירות לאנשים עם מוגבלויות</li>
-                    <li>גמישות בתיאום פגישות והתאמה לצרכים המיוחדים של כל לקוח</li>
-                    <li>תקשורת ברורה ומותאמת אישית</li>
+                    <li data-i18n="a11y.s6.li1">צוות מקצועי ואדיב המיומן בשירות לאנשים עם מוגבלויות</li>
+                    <li data-i18n="a11y.s6.li2">גמישות בתיאום פגישות והתאמה לצרכים המיוחדים של כל לקוח</li>
+                    <li data-i18n="a11y.s6.li3">תקשורת ברורה ומותאמת אישית</li>
                 </ul>
 
-                <h2>הבהרה</h2>
-                <p>
-                    חרף מאמצנו לאפשר גלישה באתר נגיש עבור כל דפי האתר, יתכן ויתגלו דפים באתר שטרם 
-                    הונגשו, או שטרם נמצא הפתרון הטכנולוגי המתאים.
-                </p>
-                <p>
-                    אנו ממשיכים במאמצים לשפר את נגישות האתר, ככל האפשר, וזאת מתוך אמונה ומחויבות 
-                    מוסרית לאפשר שימוש באתר לכלל האוכלוסייה לרבות אנשים עם מוגבלויות.
-                </p>
+                <h2 data-i18n="a11y.s7.title">הבהרה</h2>
+                <p data-i18n="a11y.s7.p1">חרף מאמצנו לאפשר גלישה באתר נגיש עבור כל דפי האתר, יתכן ויתגלו דפים באתר שטרם הונגשו, או שטרם נמצא הפתרון הטכנולוגי המתאים.</p>
+                <p data-i18n="a11y.s7.p2">אנו ממשיכים במאמצים לשפר את נגישות האתר, ככל האפשר, וזאת מתוך אמונה ומחויבות מוסרית לאפשר שימוש באתר לכלל האוכלוסייה לרבות אנשים עם מוגבלויות.</p>
 
-                <p class="update-date">
-                    תאריך עדכון אחרון: פברואר 2026
-                </p>
+                <p class="update-date" data-i18n="a11y.update">תאריך עדכון אחרון: פברואר 2026</p>
             </div>
         </section>
     </main>
@@ -210,26 +176,27 @@
         <div class="container">
             <div class="footer__content">
                 <div class="footer__info">
-                    <h3 class="footer__title">כהן פינויים וירושות</h3>
-                    <p class="footer__description">
-                        שירותי פינוי מקצועיים באזור חיפה והצפון.
-                    </p>
+                    <h3 class="footer__title" data-i18n="footer.title">כהן פינויים וירושות</h3>
+                    <p class="footer__description" data-i18n="footer.description.short">שירותי פינוי מקצועיים באזור חיפה והצפון.</p>
                 </div>
                 <div class="footer__links">
-                    <h4 class="footer__subtitle">קישורים</h4>
+                    <h4 class="footer__subtitle" data-i18n="footer.links.title">קישורים</h4>
                     <ul>
-                        <li><a href="terms.html">תנאי שימוש</a></li>
-                        <li><a href="terms.html#privacy">מדיניות פרטיות</a></li>
-                        <li><a href="accessibility-statement.html">הצהרת נגישות</a></li>
+                        <li><a href="terms.html" data-i18n="footer.links.terms">תנאי שימוש</a></li>
+                        <li><a href="terms.html#privacy" data-i18n="footer.links.privacy">מדיניות פרטיות</a></li>
+                        <li><a href="accessibility-statement.html" data-i18n="footer.links.accessibility">הצהרת נגישות</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer__bottom">
-                <p>&copy; 2026 כהן פינויים וירושות. כל הזכויות שמורות.</p>
+                <p data-i18n="footer.copyright">&copy; 2026 כהן פינויים וירושות. כל הזכויות שמורות.</p>
             </div>
         </div>
     </footer>
 
+    <script src="../../shared/js/utils.js"></script>
     <script src="../../shared/js/accessibility.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
