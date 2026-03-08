@@ -29,42 +29,53 @@ document.addEventListener('DOMContentLoaded', function() {
    ----------------------------------------- */
 const LanguageSwitcher = {
     currentLang: 'he',
-    toggleBtn: null,
-    currentLangDisplay: null,
+    options: null, // NodeList of the two pill buttons
 
     init() {
-        this.toggleBtn = document.getElementById('language-toggle');
-        this.currentLangDisplay = document.getElementById('current-lang');
-        
-        if (!this.toggleBtn || !this.currentLangDisplay) return;
+        this.options = document.querySelectorAll('.language-switcher__option');
 
-        // Load saved language preference or default to Hebrew
-        this.currentLang = localStorage.getItem('preferredLanguage') || 'he';
-        
-        // Apply the language
+        if (!this.options.length) return;
+
+        // Priority: URL param → localStorage → default Hebrew
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlLang = urlParams.get('lang');
+        if (urlLang === 'ru') {
+            this.currentLang = 'ru';
+        } else {
+            this.currentLang = localStorage.getItem('preferredLanguage') || 'he';
+        }
+
+        // Apply on load
         this.applyLanguage(this.currentLang);
 
-        // Bind events
-        this.toggleBtn.addEventListener('click', () => this.toggleLanguage());
-    },
-
-    toggleLanguage() {
-        this.currentLang = this.currentLang === 'he' ? 'ru' : 'he';
-        localStorage.setItem('preferredLanguage', this.currentLang);
-        this.applyLanguage(this.currentLang);
+        // Bind each pill button
+        this.options.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                if (lang && lang !== this.currentLang) {
+                    this.currentLang = lang;
+                    localStorage.setItem('preferredLanguage', lang);
+                    this.applyLanguage(lang);
+                }
+            });
+        });
     },
 
     applyLanguage(lang) {
         this.currentLang = lang;
-        
-        // Update HTML attributes
+
+        // Update <html> attributes for direction and language
         const html = document.documentElement;
-        html.setAttribute('lang', lang === 'he' ? 'he' : 'ru');
+        html.setAttribute('lang', lang);
         html.setAttribute('dir', lang === 'he' ? 'rtl' : 'ltr');
-        
-        // Update current language display
-        this.currentLangDisplay.textContent = lang === 'he' ? 'עב' : 'RU';
-        
+
+        // Update active/inactive state on both pill buttons
+        this.options.forEach(btn => {
+            const isActive = btn.getAttribute('data-lang') === lang;
+            btn.classList.toggle('language-switcher__option--active', isActive);
+            btn.setAttribute('aria-pressed', isActive.toString());
+        });
+
         // Translate all elements with data-i18n attribute
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.getAttribute('data-i18n');
@@ -74,12 +85,10 @@ const LanguageSwitcher = {
             }
         });
 
-        // Translate all elements with data-i18n-attr attribute
+        // Translate attributes (aria-label, placeholder, etc.)
         document.querySelectorAll('[data-i18n-attr]').forEach(element => {
             const attrMap = element.getAttribute('data-i18n-attr');
-            const pairs = attrMap.split(',');
-            
-            pairs.forEach(pair => {
+            attrMap.split(',').forEach(pair => {
                 const [attr, key] = pair.split(':').map(s => s.trim());
                 const translation = this.translate(key);
                 if (translation) {
@@ -88,7 +97,7 @@ const LanguageSwitcher = {
             });
         });
 
-        // Update page title and meta description
+        // Update page <title> and meta description
         const title = this.translate('meta.title');
         const description = this.translate('meta.description');
         if (title) document.title = title;
@@ -96,10 +105,93 @@ const LanguageSwitcher = {
             const metaDesc = document.querySelector('meta[name="description"]');
             if (metaDesc) metaDesc.setAttribute('content', description);
         }
+
+        // Update URL parameter so the page is shareable / indexable
+        const url = new URL(window.location.href);
+        if (lang === 'ru') {
+            url.searchParams.set('lang', 'ru');
+        } else {
+            url.searchParams.delete('lang');
+        }
+        window.history.replaceState({}, '', url.toString());
+
+        // Update accessibility widget texts
+        this.updateAccessibilityWidget(lang);
+    },
+
+    updateAccessibilityWidget(lang) {
+        const widget = document.querySelector('.accessibility-widget');
+        if (!widget) return;
+
+        const texts = {
+            he: {
+                region: 'אפשרויות נגישות',
+                toggleBtn: 'פתח תפריט נגישות',
+                title: 'נגישות',
+                closeBtn: 'סגור תפריט נגישות',
+                decreaseFont: 'הקטן גופן',
+                sizeLabel: 'גודל טקסט',
+                increaseFont: 'הגדל גופן',
+                highContrast: 'ניגודיות גבוהה',
+                grayscale: 'גווני אפור',
+                highlightLinks: 'הדגשת קישורים',
+                readableFont: 'גופן קריא',
+                stopAnimations: 'עצירת אנימציות',
+                reset: 'איפוס הגדרות'
+            },
+            ru: {
+                region: 'Параметры доступности',
+                toggleBtn: 'Открыть меню доступности',
+                title: 'Доступность',
+                closeBtn: 'Закрыть меню доступности',
+                decreaseFont: 'Уменьшить шрифт',
+                sizeLabel: 'Размер текста',
+                increaseFont: 'Увеличить шрифт',
+                highContrast: 'Высокий контраст',
+                grayscale: 'Оттенки серого',
+                highlightLinks: 'Выделить ссылки',
+                readableFont: 'Читаемый шрифт',
+                stopAnimations: 'Остановить анимации',
+                reset: 'Сбросить настройки'
+            }
+        };
+
+        const t = texts[lang] || texts.he;
+
+        widget.setAttribute('aria-label', t.region);
+
+        const toggleBtn = widget.querySelector('.accessibility-toggle');
+        if (toggleBtn) toggleBtn.setAttribute('aria-label', t.toggleBtn);
+
+        const titleEl = widget.querySelector('.accessibility-panel__title');
+        if (titleEl) titleEl.textContent = t.title;
+
+        const closeBtn = widget.querySelector('.accessibility-panel__close');
+        if (closeBtn) closeBtn.setAttribute('aria-label', t.closeBtn);
+
+        const decreaseBtn = widget.querySelector('[data-action="decrease-font"]');
+        if (decreaseBtn) decreaseBtn.setAttribute('aria-label', t.decreaseFont);
+
+        const sizeLabel = widget.querySelector('.accessibility-size-label');
+        if (sizeLabel) sizeLabel.textContent = t.sizeLabel;
+
+        const increaseBtn = widget.querySelector('[data-action="increase-font"]');
+        if (increaseBtn) increaseBtn.setAttribute('aria-label', t.increaseFont);
+
+        ['highContrast', 'grayscale', 'highlightLinks', 'readableFont', 'stopAnimations'].forEach(opt => {
+            const btn = widget.querySelector(`[data-option="${opt}"]`);
+            if (btn) {
+                const labelEl = btn.querySelector('.accessibility-option__label');
+                if (labelEl) labelEl.textContent = t[opt];
+            }
+        });
+
+        const resetBtn = widget.querySelector('.accessibility-reset');
+        if (resetBtn) resetBtn.textContent = t.reset;
     },
 
     translate(key) {
-        if (!translations || !translations[this.currentLang]) return null;
+        if (typeof translations === 'undefined' || !translations[this.currentLang]) return null;
         return translations[this.currentLang][key] || null;
     }
 };
