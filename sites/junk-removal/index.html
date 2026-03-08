@@ -144,7 +144,7 @@
 </head>
 <body>
     <!-- Skip to Content Link (Accessibility) -->
-    <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
+    <a href="#main-content" class="skip-link" data-i18n="skip.content">דלג לתוכן הראשי</a>
 
     <!-- ========================================
          HEADER
@@ -154,23 +154,30 @@
             <!-- Logo / Business Name -->
             <div class="header__logo">
                 <a href="index.html" aria-label="כהן פינויים וירושות - עמוד הבית">
-                    <span class="header__logo-text">כהן פינויים וירושות</span>
-                    <span class="header__logo-tagline">חיפה והצפון</span>
+                    <span class="header__logo-text" data-i18n="header.logo">כהן פינויים וירושות</span>
+                    <span class="header__logo-tagline" data-i18n="header.tagline">חיפה והצפון</span>
                 </a>
             </div>
 
             <!-- Navigation -->
             <nav class="header__nav" role="navigation" aria-label="ניווט ראשי">
                 <ul class="header__nav-list">
-                    <li><a href="#services">השירותים שלנו</a></li>
-                    <li><a href="#how-it-works">איך זה עובד</a></li>
-                    <li><a href="#why-us">למה אנחנו</a></li>
-                    <li><a href="#contact" class="btn btn-primary btn-sm">צור קשר</a></li>
+                    <li><a href="#services" data-i18n="header.nav.services">השירותים שלנו</a></li>
+                    <li><a href="#how-it-works" data-i18n="header.nav.how">איך זה עובד</a></li>
+                    <li><a href="#why-us" data-i18n="header.nav.why">למה אנחנו</a></li>
+                    <li><a href="#contact" class="btn btn-primary btn-sm" data-i18n="header.nav.contact">צור קשר</a></li>
                 </ul>
             </nav>
 
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <button class="language-switcher__btn" id="language-toggle" aria-label="Switch language / שנה שפה">
+                    <span class="language-switcher__current" id="current-lang">עב</span>
+                </button>
+            </div>
+
             <!-- Mobile Menu Toggle -->
-            <button class="header__menu-toggle" aria-label="פתח תפריט" aria-expanded="false" aria-controls="mobile-menu">
+            <button class="header__menu-toggle" aria-label="פתח תפריט" data-i18n-attr="aria-label:header.menu.open" aria-expanded="false" aria-controls="mobile-menu">
                 <span class="header__menu-icon"></span>
             </button>
         </div>
@@ -178,10 +185,10 @@
         <!-- Mobile Menu -->
         <nav class="mobile-menu" id="mobile-menu" role="navigation" aria-label="תפריט נייד" aria-hidden="true">
             <ul class="mobile-menu__list">
-                <li><a href="#services">השירותים שלנו</a></li>
-                <li><a href="#how-it-works">איך זה עובד</a></li>
-                <li><a href="#why-us">למה אנחנו</a></li>
-                <li><a href="#contact" class="btn btn-primary">צור קשר</a></li>
+                <li><a href="#services" data-i18n="header.nav.services">השירותים שלנו</a></li>
+                <li><a href="#how-it-works" data-i18n="header.nav.how">איך זה עובד</a></li>
+                <li><a href="#why-us" data-i18n="header.nav.why">למה אנחנו</a></li>
+                <li><a href="#contact" class="btn btn-primary" data-i18n="header.nav.contact">צור קשר</a></li>
             </ul>
         </nav>
     </header>
@@ -198,20 +205,20 @@
             <div class="container hero__container">
                 <div class="hero__content">
                     <h1 id="hero-title" class="hero__title">
-                        פינוי תכולה ועזבונות בחיפה
-                        <span class="hero__title-highlight">מהיר, אמין, ובמחיר הוגן</span>
+                        <span data-i18n="hero.title.main">פינוי תכולה ועזבונות בחיפה</span>
+                        <span class="hero__title-highlight" data-i18n="hero.title.highlight">מהיר, אמין, ובמחיר הוגן</span>
                     </h1>
-                    <p class="hero__description">
+                    <p class="hero__description" data-i18n="hero.description">
                         אנחנו מתמחים בפינוי דירות, בתים, מחסנים וירושות באזור חיפה והצפון.
                         צוות מקצועי, שירות אדיב, ומחירים שלא תמצאו במקום אחר.
                     </p>
-                    <a href="#contact" class="btn btn-accent btn-lg hero__cta">
+                    <a href="#contact" class="btn btn-accent btn-lg hero__cta" data-i18n="hero.cta">
                         קבל הצעת מחיר חינם
                     </a>
                 </div>
                 <div class="hero__image">
                     <!-- TODO: Add hero image -->
-                    <div class="hero__image-placeholder" role="img" aria-label="שירות פינוי דירות ותכולה בחיפה - כהן פינויים">
+                    <div class="hero__image-placeholder" role="img" data-i18n-attr="aria-label:hero.image.alt" aria-label="שירות פינוי דירות ותכולה בחיפה - כהן פינויים">
                         <span>🏠</span>
                     </div>
                 </div>
@@ -270,16 +277,16 @@
              ======================================== -->
         <section class="how-it-works" id="how-it-works" aria-labelledby="how-title">
             <div class="container">
-                <h2 id="how-title" class="section-title">איך זה עובד?</h2>
-                <p class="section-subtitle">תהליך פשוט בשלושה שלבים</p>
+                <h2 id="how-title" class="section-title" data-i18n="how.title">איך זה עובד?</h2>
+                <p class="section-subtitle" data-i18n="how.subtitle">תהליך פשוט בשלושה שלבים</p>
 
                 <div class="steps">
                     <!-- Step 1 -->
                     <div class="step">
                         <div class="step__number" aria-hidden="true">1</div>
                         <div class="step__content">
-                            <h3 class="step__title">יצירת קשר</h3>
-                            <p class="step__description">מלאו את הטופס או התקשרו אלינו וספרו לנו על הפינוי הנדרש</p>
+                            <h3 class="step__title" data-i18n="how.step1.title">יצירת קשר</h3>
+                            <p class="step__description" data-i18n="how.step1.desc">מלאו את הטופס או התקשרו אלינו וספרו לנו על הפינוי הנדרש</p>
                         </div>
                     </div>
 
@@ -287,8 +294,8 @@
                     <div class="step">
                         <div class="step__number" aria-hidden="true">2</div>
                         <div class="step__content">
-                            <h3 class="step__title">הצעת מחיר</h3>
-                            <p class="step__description">נבחן את הפרטים ונחזור אליכם עם הצעת מחיר ללא התחייבות</p>
+                            <h3 class="step__title" data-i18n="how.step2.title">הצעת מחיר</h3>
+                            <p class="step__description" data-i18n="how.step2.desc">נבחן את הפרטים ונחזור אליכם עם הצעת מחיר ללא התחייבות</p>
                         </div>
                     </div>
 
@@ -296,8 +303,8 @@
                     <div class="step">
                         <div class="step__number" aria-hidden="true">3</div>
                         <div class="step__content">
-                            <h3 class="step__title">פינוי מהיר</h3>
-                            <p class="step__description">הצוות שלנו יבצע את הפינוי במועד שנקבע ביעילות ובמקצועיות</p>
+                            <h3 class="step__title" data-i18n="how.step3.title">פינוי מהיר</h3>
+                            <p class="step__description" data-i18n="how.step3.desc">הצוות שלנו יבצע את הפינוי במועד שנקבע ביעילות ובמקצועיות</p>
                         </div>
                     </div>
                 </div>
@@ -309,35 +316,35 @@
              ======================================== -->
         <section class="why-us" id="why-us" aria-labelledby="why-title">
             <div class="container">
-                <h2 id="why-title" class="section-title">למה לבחור בכהן פינויים?</h2>
+                <h2 id="why-title" class="section-title" data-i18n="why.title">למה לבחור בכהן פינויים?</h2>
                 
                 <div class="benefits">
                     <!-- Benefit 1 -->
                     <div class="benefit-card">
                         <div class="benefit-card__icon" aria-hidden="true">⚡</div>
-                        <h3 class="benefit-card__title">מהיר ואמין</h3>
-                        <p class="benefit-card__description">אנחנו מגיעים בזמן ומסיימים את העבודה ביעילות מירבית</p>
+                        <h3 class="benefit-card__title" data-i18n="why.fast.title">מהיר ואמין</h3>
+                        <p class="benefit-card__description" data-i18n="why.fast.desc">אנחנו מגיעים בזמן ומסיימים את העבודה ביעילות מירבית</p>
                     </div>
 
                     <!-- Benefit 2 -->
                     <div class="benefit-card">
                         <div class="benefit-card__icon" aria-hidden="true">💰</div>
-                        <h3 class="benefit-card__title">מחירים הוגנים</h3>
-                        <p class="benefit-card__description">הצעות מחיר שקופות ללא הפתעות, מחירים תחרותיים</p>
+                        <h3 class="benefit-card__title" data-i18n="why.price.title">מחירים הוגנים</h3>
+                        <p class="benefit-card__description" data-i18n="why.price.desc">הצעות מחיר שקופות ללא הפתעות, מחירים תחרותיים</p>
                     </div>
 
                     <!-- Benefit 3 -->
                     <div class="benefit-card">
                         <div class="benefit-card__icon" aria-hidden="true">😊</div>
-                        <h3 class="benefit-card__title">שירות אדיב</h3>
-                        <p class="benefit-card__description">צוות מקצועי ואדיב שמתייחס לכם וברכוש שלכם בכבוד</p>
+                        <h3 class="benefit-card__title" data-i18n="why.service.title">שירות אדיב</h3>
+                        <p class="benefit-card__description" data-i18n="why.service.desc">צוות מקצועי ואדיב שמתייחס לכם וברכוש שלכם בכבוד</p>
                     </div>
 
                     <!-- Benefit 4 -->
                     <div class="benefit-card">
                         <div class="benefit-card__icon" aria-hidden="true">♻️</div>
-                        <h3 class="benefit-card__title">פינוי אקולוגי</h3>
-                        <p class="benefit-card__description">מיחזור ותרומה של פריטים ראויים, סילוק אחראי לסביבה</p>
+                        <h3 class="benefit-card__title" data-i18n="why.eco.title">פינוי אקולוגי</h3>
+                        <p class="benefit-card__description" data-i18n="why.eco.desc">מיחזור ותרומה של פריטים ראויים, סילוק אחראי לסביבה</p>
                     </div>
                 </div>
             </div>
@@ -348,8 +355,8 @@
              ======================================== -->
         <section class="contact" id="contact" aria-labelledby="contact-title">
             <div class="container">
-                <h2 id="contact-title" class="section-title">בקשו הצעת מחיר חינם</h2>
-                <p class="section-subtitle">מלאו את הפרטים ונחזור אליכם בהקדם</p>
+                <h2 id="contact-title" class="section-title" data-i18n="contact.title">בקשו הצעת מחיר חינם</h2>
+                <p class="section-subtitle" data-i18n="contact.subtitle">מלאו את הפרטים ונחזור אליכם בהקדם</p>
 
                 <!-- 
                     FORMINIT - FORM SUBMISSIONS WITH FILE UPLOAD
@@ -363,7 +370,7 @@
                     <div class="contact-form__grid">
                         <!-- Full Name -->
                         <div class="form-group">
-                            <label for="name" class="form-label form-label-required">שם מלא</label>
+                            <label for="name" class="form-label form-label-required" data-i18n="contact.form.name">שם מלא</label>
                             <input type="text" 
                                    id="name" 
                                    name="fi-sender-firstName" 
@@ -375,7 +382,7 @@
 
                         <!-- Phone -->
                         <div class="form-group">
-                            <label for="phone" class="form-label form-label-required">טלפון</label>
+                            <label for="phone" class="form-label form-label-required" data-i18n="contact.form.phone">טלפון</label>
                             <input type="tel" 
                                    id="phone" 
                                    name="fi-text-phone" 
@@ -388,7 +395,7 @@
 
                         <!-- Email -->
                         <div class="form-group">
-                            <label for="email" class="form-label">אימייל (לא חובה)</label>
+                            <label for="email" class="form-label" data-i18n="contact.form.email">אימייל (לא חובה)</label>
                             <input type="email" 
                                    id="email" 
                                    name="fi-sender-email" 
@@ -399,10 +406,10 @@
 
                         <!-- City -->
                         <div class="form-group">
-                            <label for="city" class="form-label form-label-required">עיר / ישוב</label>
+                            <label for="city" class="form-label form-label-required" data-i18n="contact.form.city">עיר / ישוב</label>
                             <select id="city" name="fi-select-city" class="form-select" required aria-required="true">
-                                <option value="">בחרו עיר</option>
-                                <optgroup label="חיפה והסביבה">
+                                <option value="" data-i18n="contact.form.city.placeholder">בחרו עיר</option>
+                                <optgroup data-i18n-attr="label:contact.form.city.haifa" label="חיפה והסביבה">
                                     <option value="חיפה">חיפה</option>
                                     <option value="קריית אתא">קריית אתא</option>
                                     <option value="קריית ביאליק">קריית ביאליק</option>
@@ -411,7 +418,7 @@
                                     <option value="נשר">נשר</option>
                                     <option value="טירת כרמל">טירת כרמל</option>
                                 </optgroup>
-                                <optgroup label="צפון">
+                                <optgroup data-i18n-attr="label:contact.form.city.north" label="צפון">
                                     <option value="עכו">עכו</option>
                                     <option value="נהריה">נהריה</option>
                                     <option value="כרמיאל">כרמיאל</option>
@@ -420,35 +427,37 @@
                                     <option value="צפת">צפת</option>
                                     <option value="קריית שמונה">קריית שמונה</option>
                                 </optgroup>
-                                <option value="אחר">אחר</option>
+                                <option value="אחר" data-i18n="contact.form.city.other">אחר</option>
                             </select>
                         </div>
 
                         <!-- Address -->
                         <div class="form-group form-group--full">
-                            <label for="address" class="form-label">כתובת מדויקת (לא חובה)</label>
+                            <label for="address" class="form-label" data-i18n="contact.form.address">כתובת מדויקת (לא חובה)</label>
                             <input type="text" 
                                    id="address" 
                                    name="fi-text-address" 
                                    class="form-input"
                                    autocomplete="street-address"
+                                   data-i18n-attr="placeholder:contact.form.address.placeholder"
                                    placeholder="רחוב, מספר בית, קומה">
                         </div>
 
                         <!-- Description -->
                         <div class="form-group form-group--full">
-                            <label for="description" class="form-label form-label-required">תיאור הפינוי</label>
+                            <label for="description" class="form-label form-label-required" data-i18n="contact.form.description">תיאור הפינוי</label>
                             <textarea id="description" 
                                       name="fi-text-description" 
                                       class="form-textarea" 
                                       required
                                       aria-required="true"
+                                      data-i18n-attr="placeholder:contact.form.description.placeholder"
                                       placeholder="ספרו לנו מה צריך לפנות - כמות הפריטים, סוגם, קומה, גישה למקום וכל פרט רלוונטי אחר..."></textarea>
                         </div>
 
                         <!-- Photo Upload -->
                         <div class="form-group form-group--full">
-                            <label for="photos" class="form-label">העלאת תמונות (לא חובה)</label>
+                            <label for="photos" class="form-label" data-i18n="contact.form.photos">העלאת תמונות (לא חובה)</label>
                             <div class="file-upload" id="file-upload-area">
                                 <input type="file" 
                                        id="photos" 
@@ -459,12 +468,12 @@
                                        aria-describedby="photos-help">
                                 <label for="photos" class="file-upload__label">
                                     <span class="file-upload__icon" aria-hidden="true">📷</span>
-                                    <span class="file-upload__text">לחצו לבחירת תמונות או גררו לכאן</span>
-                                    <span class="file-upload__hint">JPG, PNG או HEIC (עד 5 קבצים, עד 5MB כל אחד)</span>
+                                    <span class="file-upload__text" data-i18n="contact.form.photos.label">לחצו לבחירת תמונות או גררו לכאן</span>
+                                    <span class="file-upload__hint" data-i18n="contact.form.photos.hint">JPG, PNG או HEIC (עד 5 קבצים, עד 5MB כל אחד)</span>
                                 </label>
                                 <div class="file-upload__preview" id="photos-preview" aria-live="polite"></div>
                             </div>
-                            <span id="photos-help" class="form-hint">תמונות עוזרות לנו לתת הערכת מחיר מדויקת יותר</span>
+                            <span id="photos-help" class="form-hint" data-i18n="contact.form.photos.help">תמונות עוזרות לנו לתת הערכת מחיר מדויקת יותר</span>
                         </div>
 
                     </div>
@@ -478,17 +487,19 @@
                                    value="yes"
                                    required
                                    aria-required="true">
-                            <span>קראתי ואני מסכים/ה ל<a href="terms.html" target="_blank">תנאי השימוש</a> ול<a href="terms.html#privacy" target="_blank">מדיניות הפרטיות</a></span>
+                            <span id="terms-text">
+                                <span data-i18n="contact.form.terms">קראתי ואני מסכים/ה ל</span><a href="terms.html" target="_blank" data-i18n="contact.form.terms.link">תנאי השימוש</a> <span data-i18n="contact.form.terms.and">ול</span><a href="terms.html#privacy" target="_blank" data-i18n="contact.form.terms.privacy">מדיניות הפרטיות</a>
+                            </span>
                         </label>
                     </div>
 
                     <!-- Submit Button -->
                     <div class="form-group form-group--submit">
                         <button type="submit" class="btn btn-accent btn-lg contact-form__submit">
-                            <span class="contact-form__submit-text">שלח בקשה</span>
+                            <span class="contact-form__submit-text" data-i18n="contact.form.submit">שלח בקשה</span>
                             <span class="contact-form__submit-loading hidden" aria-hidden="true">
                                 <span class="spinner"></span>
-                                שולח...
+                                <span data-i18n="contact.form.submitting">שולח...</span>
                             </span>
                         </button>
                     </div>
@@ -506,8 +517,8 @@
             <div class="footer__content">
                 <!-- Business Info -->
                 <div class="footer__info">
-                    <h3 class="footer__title">כהן פינויים וירושות</h3>
-                    <p class="footer__description">
+                    <h3 class="footer__title" data-i18n="footer.title">כהן פינויים וירושות</h3>
+                    <p class="footer__description" data-i18n="footer.description">
                         שירותי פינוי מקצועיים באזור חיפה והצפון.
                         אנחנו כאן לעזור לכם לפנות בקלות וללא דאגות.
                     </p>
@@ -515,24 +526,24 @@
 
                 <!-- Service Areas -->
                 <div class="footer__areas">
-                    <h4 class="footer__subtitle">אזורי שירות</h4>
-                    <p>חיפה, קריות, עכו, נהריה, כרמיאל, עפולה, טבריה ועוד</p>
+                    <h4 class="footer__subtitle" data-i18n="footer.areas.title">אזורי שירות</h4>
+                    <p data-i18n="footer.areas.list">חיפה, קריות, עכו, נהריה, כרמיאל, עפולה, טבריה ועוד</p>
                 </div>
 
                 <!-- Links -->
                 <div class="footer__links">
-                    <h4 class="footer__subtitle">קישורים</h4>
+                    <h4 class="footer__subtitle" data-i18n="footer.links.title">קישורים</h4>
                     <ul>
-                        <li><a href="terms.html">תנאי שימוש</a></li>
-                        <li><a href="terms.html#privacy">מדיניות פרטיות</a></li>
-                        <li><a href="accessibility-statement.html">הצהרת נגישות</a></li>
+                        <li><a href="terms.html" data-i18n="footer.links.terms">תנאי שימוש</a></li>
+                        <li><a href="terms.html#privacy" data-i18n="footer.links.privacy">מדיניות פרטיות</a></li>
+                        <li><a href="accessibility-statement.html" data-i18n="footer.links.accessibility">הצהרת נגישות</a></li>
                     </ul>
                 </div>
             </div>
 
             <!-- Copyright -->
             <div class="footer__bottom">
-                <p>&copy; 2026 כהן פינויים וירושות. כל הזכויות שמורות.</p>
+                <p data-i18n="footer.copyright">&copy; 2026 כהן פינויים וירושות. כל הזכויות שמורות.</p>
             </div>
         </div>
     </footer>
@@ -543,6 +554,7 @@
     <script src="../../shared/js/utils.js"></script>
     <script src="../../shared/js/accessibility.js"></script>
     <script src="https://forminit.com/sdk/v1/forminit.js"></script>
+    <script src="js/translations.js"></script>
     <script src="js/main.js"></script>
 
     <!-- 

@@ -5,6 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all modules
+    LanguageSwitcher.init();
     MobileMenu.init();
     ContactForm.init();
     FileUpload.init();
@@ -15,12 +16,93 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show success message
         const form = document.getElementById('contact-form');
         if (form) {
-            FormUtils.showSuccess(form, 'הבקשה נשלחה בהצלחה! ניצור איתך קשר בהקדם');
+            const successMessage = LanguageSwitcher.translate('contact.form.success');
+            FormUtils.showSuccess(form, successMessage);
             // Remove query param from URL
             window.history.replaceState({}, document.title, window.location.pathname);
         }
     }
 });
+
+/* -----------------------------------------
+   Language Switcher Module
+   ----------------------------------------- */
+const LanguageSwitcher = {
+    currentLang: 'he',
+    toggleBtn: null,
+    currentLangDisplay: null,
+
+    init() {
+        this.toggleBtn = document.getElementById('language-toggle');
+        this.currentLangDisplay = document.getElementById('current-lang');
+        
+        if (!this.toggleBtn || !this.currentLangDisplay) return;
+
+        // Load saved language preference or default to Hebrew
+        this.currentLang = localStorage.getItem('preferredLanguage') || 'he';
+        
+        // Apply the language
+        this.applyLanguage(this.currentLang);
+
+        // Bind events
+        this.toggleBtn.addEventListener('click', () => this.toggleLanguage());
+    },
+
+    toggleLanguage() {
+        this.currentLang = this.currentLang === 'he' ? 'ru' : 'he';
+        localStorage.setItem('preferredLanguage', this.currentLang);
+        this.applyLanguage(this.currentLang);
+    },
+
+    applyLanguage(lang) {
+        this.currentLang = lang;
+        
+        // Update HTML attributes
+        const html = document.documentElement;
+        html.setAttribute('lang', lang === 'he' ? 'he' : 'ru');
+        html.setAttribute('dir', lang === 'he' ? 'rtl' : 'ltr');
+        
+        // Update current language display
+        this.currentLangDisplay.textContent = lang === 'he' ? 'עב' : 'RU';
+        
+        // Translate all elements with data-i18n attribute
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            const translation = this.translate(key);
+            if (translation) {
+                element.textContent = translation;
+            }
+        });
+
+        // Translate all elements with data-i18n-attr attribute
+        document.querySelectorAll('[data-i18n-attr]').forEach(element => {
+            const attrMap = element.getAttribute('data-i18n-attr');
+            const pairs = attrMap.split(',');
+            
+            pairs.forEach(pair => {
+                const [attr, key] = pair.split(':').map(s => s.trim());
+                const translation = this.translate(key);
+                if (translation) {
+                    element.setAttribute(attr, translation);
+                }
+            });
+        });
+
+        // Update page title and meta description
+        const title = this.translate('meta.title');
+        const description = this.translate('meta.description');
+        if (title) document.title = title;
+        if (description) {
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) metaDesc.setAttribute('content', description);
+        }
+    },
+
+    translate(key) {
+        if (!translations || !translations[this.currentLang]) return null;
+        return translations[this.currentLang][key] || null;
+    }
+};
 
 /* -----------------------------------------
    Mobile Menu Module
